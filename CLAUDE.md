@@ -5,9 +5,9 @@
      Keep this file under ~150 lines — Claude loads it every session.
      See the guide at https://hugosantanna.github.io/clo-author/ for full documentation. -->
 
-**Project:** [YOUR PROJECT NAME]
+**Project:** Forward Guidance and the Policy Rate Path
 **Institution:** [YOUR INSTITUTION]
-**Branch:** main
+**Branch:** claude/setup-forward-guidance-research-ePGuX
 
 ---
 
@@ -123,7 +123,8 @@ See `quality.md` for weighted aggregation formula.
 
 | Component | File | Status | Description |
 |-----------|------|--------|-------------|
-| Paper | `Paper/main.tex` | [draft/submitted/R&R] | [Brief description] |
-| Data | `scripts/R/` | [complete/in-progress] | [Analysis description] |
-| Replication | `Replication/` | [not started/ready] | [Deposit status] |
-| Job Market Talk | `Talks/job_market_talk.tex` | -- | [Status] |
+| Paper | `Paper/main.tex` | draft | Should central banks publish the policy rate path? |
+| Literature | `quality_reports/session_logs/` | in-progress | Forward guidance literature review |
+| Data | `scripts/R/` | not started | Empirical analysis TBD after strategy |
+| Replication | `Replication/` | not started | Deposit status pending |
+| Job Market Talk | `Talks/job_market_talk.tex` | not started | TBD |
