@@ -138,104 +138,176 @@ Proposition~\ref{prop:intermediate} identifies a sharp boundary: conditional
 economic forecasts are welfare-neutral relative to opacity, while explicit rate-path
 announcements strictly improve welfare. Between these extremes lies
 \emph{scenario communication}---publishing the intended rate path under multiple
-contingencies. We now examine when scenarios improve welfare and how the magnitude
-of the gain varies with scenario design.
+contingencies, imperfectly or with deliberate ambiguity. We now parametrise these
+intermediate regimes and characterise the welfare gain.
 
 \paragraph{Definition.}
-A \emph{scenario} is a triplet
-$\bigl(\varepsilon_c^{(k)},\, \hat{\imath}_2^{(k)},\,
-\hat{\pi}_2^{(k)},\, \hat{y}_2^{(k)}\bigr)$
-specifying the central bank's intended period-2 rate and the associated economic
-outcomes conditional on the cost-push shock taking the value
-$\varepsilon_c^{(k)}$. A \emph{scenario set} is a menu of $K$ such triplets
-$\mathcal{S} = \bigl\{\bigl(\varepsilon_c^{(k)}, \hat{\imath}_2^{(k)}\bigr)
-\bigr\}_{k=1}^{K}$.
+A \emph{scenario} is a pair $\bigl(\varepsilon_c^{(k)},\, \hat{\imath}_2^{(k)}\bigr)$
+specifying the central bank's intended period-2 rate conditional on the cost-push
+shock taking value $\varepsilon_c^{(k)}$. A \emph{scenario set} is a menu of $K$
+such pairs $\mathcal{S} = \bigl\{\bigl(\varepsilon_c^{(k)},\hat{\imath}_2^{(k)}\bigr)
+\bigr\}_{k=1}^{K}$. The SNB and BOE regimes are special cases with $\hat{\imath}_2^{(k)}$
+fixed independently of $\lambda$; a fully contingent scenario has
+$\hat{\imath}_2^{(k)} = \phi_c(\lambda)\varepsilon_c^{(k)}$.
 
 \paragraph{Scenarios and type revelation.}
 Since $i_2^*(\lambda) = \phi_d\varepsilon_d + \phi_c(\lambda)\varepsilon_c$, a
-scenario $({\varepsilon}_c^{(k)},\, \hat{\imath}_2^{(k)})$ with
+scenario $(\varepsilon_c^{(k)},\hat{\imath}_2^{(k)})$ with
 $\hat{\imath}_2^{(k)} = \phi_c(\lambda)\varepsilon_c^{(k)}$ at any
-$\varepsilon_c^{(k)} \neq 0$ fully reveals $\lambda$, since $\phi_c$ is strictly
-monotone. A single such contingent scenario is thus informationally equivalent to
-full forward guidance.
+$\varepsilon_c^{(k)} \neq 0$ fully reveals $\lambda$ (since $\phi_c$ is strictly
+monotone), and is therefore informationally equivalent to full forward guidance.
+Non-contingent scenarios (SNB, BOE) fix $\hat{\imath}_2^{(k)}$ independently of
+$\lambda$ and hence convey zero type information.
 
-Compare this with the intermediate regimes of Section~\ref{sec:intermediate}:
-
+\paragraph{The $\theta$-parametrisation.}
+To bridge these extremes we characterise the informativeness of an arbitrary scenario
+set $\mathcal{S}$ by the \emph{Blackwell informativeness ratio}:
+\begin{equation}
+  \theta(\mathcal{S})
+  \;\equiv\;
+  \frac{\mathrm{Var}_a\bigl[\,\mathbb{E}[\phi_c(\lambda)\mid a]\,\bigr]}
+       {\mathrm{Var}_\lambda\bigl[\phi_c(\lambda)\bigr]},
+  \label{eq:theta_def}
+\end{equation}
+where $a$ denotes the signal (announcement) received by private agents and
+expectations are taken with respect to the equilibrium signal distribution. By the
+law of total variance, $\theta(\mathcal{S}) \in [0,1]$:
 \begin{itemize}
-  \item \emph{Non-contingent scenarios} (SNB, BOE): condition on a fixed rate
-        $\hat{\imath}_2 = c$ (a constant, or a market-implied constant).
-        These are welfare-equivalent to opacity because $\lambda$ does not affect
-        the forecast when the rate is fixed.
-  \item \emph{Contingent scenarios}: map a future shock realization to an
-        intended rate $\hat{\imath}_2(\varepsilon_c^{(k)}) = \phi_c(\lambda)\varepsilon_c^{(k)}$.
-        These reveal $\lambda$ and are welfare-equivalent to forward guidance.
+  \item $\theta = 0$: no type information is transmitted (opacity, SNB, BOE);
+  \item $\theta = 1$: type is fully revealed (full forward guidance);
+  \item $\theta \in (0,1)$: partial transmission.
 \end{itemize}
 
-The distinction is precisely whether the announced rate path varies with the
-shock in a type-dependent way.
-
-\paragraph{Partial type revelation.}
-Scenarios need not fully reveal $\lambda$ to be welfare-improving. Consider the
-continuous type extension of Section~\ref{sec:extensions:continuous}, where
-$\lambda \sim F$ on $[\lambda_L, \lambda_H]$. Suppose the central bank publishes a
-scenario set that allows agents to update their posterior over $\lambda$ to
-$F(\cdot \mid \mathcal{S})$, restricting the effective support to some interval
-$[\underline{\lambda}, \overline{\lambda}] \subseteq [\lambda_L, \lambda_H]$. From
-the welfare gap formula~\eqref{eq:L1_gap_expected}, the gain relative to full
-opacity is:
+\begin{proposition}[Welfare Gain Is Linear in Informativeness]
+\label{prop:scenario}
+For any scenario set $\mathcal{S}$ with Blackwell informativeness $\theta(\mathcal{S})$:
 \begin{equation}
   \mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathcal{S}}
-  \;\propto\;
-  \Bigl[\mathrm{Var}_\lambda\bigl[\phi_c(\lambda)\bigr]
-        - \mathrm{Var}_\lambda\bigl[\phi_c(\lambda)
-          \mid \lambda \in [\underline{\lambda},\overline{\lambda}]\bigr]
-  \Bigr]\sigma_c^2,
+  \;=\;
+  \theta(\mathcal{S})\,
+  \bigl(\mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathrm{FG}}\bigr).
   \label{eq:scenario_gain}
 \end{equation}
-where $\mathrm{Var}_\lambda[\phi_c(\lambda) \mid \cdot]$ is the posterior variance
-of the response coefficient under the scenario. The gain is:
-\begin{itemize}
-  \item \emph{Zero} if the scenario conveys no information about $\lambda$
-        (as in the non-contingent SNB/BOE cases, where the posterior equals the
-        prior).
-  \item \emph{Strictly positive} for any scenario that reduces the posterior
-        variance of $\phi_c(\lambda)$.
-  \item \emph{Maximised} when the scenario fully reveals $\lambda$,
-        recovering the full forward guidance gain
-        $\mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathrm{FG}}$.
-\end{itemize}
+The welfare gain from scenario communication is exactly $\theta(\mathcal{S})$ times
+the maximum (full forward guidance) gain.
+\end{proposition}
 
-\paragraph{Optimal scenario design.}
-Expression~\eqref{eq:scenario_gain} frames the optimal scenario design problem:
-choose the scenario set $\mathcal{S}$ to maximise the reduction in posterior
-variance of $\phi_c(\lambda)$, subject to constraints on the number and form of
-scenarios. In the binary type model ($\lambda \in \{\lambda_L, \lambda_H\}$), any
-single contingent scenario with $\varepsilon_c^{(k)} \neq 0$ achieves the
-maximum---there is no intermediate case. Richer type distributions admit a spectrum
-of intermediate designs, ranging from ``fan charts'' that narrow the posterior over
-$\lambda$ somewhat, to full rate-path announcements that eliminate posterior
-uncertainty entirely.
+\begin{proof}
+From the period-1 welfare decomposition~\eqref{eq:L1_gap_expected}, the expected
+loss under any communication regime $r$ satisfies
+\begin{equation}
+  \mathbb{E}[\mathcal{L}_1^r]
+  \;=\;
+  \mathbb{E}[\mathcal{L}_1^{\mathrm{FG}}]
+  + c \cdot \mathbb{E}_a\bigl[\mathrm{Var}[\phi_c(\lambda)\mid a]\bigr]\cdot\sigma_c^2,
+  \label{eq:L1_general}
+\end{equation}
+for some constant $c > 0$ that depends only on the structural parameters. (Under FG
+the posterior variance is zero; under opacity it is $\mathrm{Var}_\lambda[\phi_c(\lambda)]$.)
+By the law of total variance:
+\begin{equation}
+  \mathbb{E}_a\bigl[\mathrm{Var}[\phi_c(\lambda)\mid a]\bigr]
+  = \mathrm{Var}_\lambda[\phi_c(\lambda)]
+    - \mathrm{Var}_a\bigl[\mathbb{E}[\phi_c(\lambda)\mid a]\bigr]
+  = (1-\theta)\,\mathrm{Var}_\lambda[\phi_c(\lambda)].
+  \label{eq:total_var}
+\end{equation}
+Substituting~\eqref{eq:total_var} into~\eqref{eq:L1_general}:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}_1^{\mathcal{S}}]
+  = \mathbb{E}[\mathcal{L}_1^{\mathrm{FG}}]
+    + c\,(1-\theta)\,\mathrm{Var}_\lambda[\phi_c(\lambda)]\,\sigma_c^2.
+\end{equation}
+At $\theta = 0$ (opacity): $\mathbb{E}[\mathcal{L}_1^{\mathrm{OP}}] =
+\mathbb{E}[\mathcal{L}_1^{\mathrm{FG}}] + c\,\mathrm{Var}_\lambda[\phi_c(\lambda)]\,\sigma_c^2$.
+Subtracting:
+\begin{equation*}
+  \mathbb{E}[\mathcal{L}_1^{\mathrm{OP}}] - \mathbb{E}[\mathcal{L}_1^{\mathcal{S}}]
+  = \theta\,c\,\mathrm{Var}_\lambda[\phi_c(\lambda)]\,\sigma_c^2
+  = \theta\,\bigl(\mathbb{E}[\mathcal{L}_1^{\mathrm{OP}}]
+                  - \mathbb{E}[\mathcal{L}_1^{\mathrm{FG}}]\bigr).
+\end{equation*}
+Period-2 losses are identical across regimes (the central bank re-optimises in
+period~2 regardless of what it announced in period~1), so the equality carries
+through to total expected losses. \qed
+\end{proof}
 
-\paragraph{Implications for practice.}
-The analysis suggests a taxonomy of central bank communication regimes, ordered by
-welfare impact:
+\paragraph{Canonical implementation: the $\theta$-disclosure rule.}
+A convenient mechanism that achieves any target $\theta \in [0,1]$ is the
+\emph{$\theta$-disclosure rule}: the central bank commits to revealing its true
+type (announcing $\phi_c(\lambda)\varepsilon_c$) with probability $\theta$, and
+making no type-revealing statement (announcing $\bar{\phi}_c\varepsilon_c$) with
+probability $1-\theta$. In the binary type model, where
+$\phi_c(\lambda_H)\varepsilon_c \neq \phi_c(\lambda_L)\varepsilon_c$ whenever
+$\varepsilon_c \neq 0$, agents perfectly infer the regime on the equilibrium path
+(a revealing announcement is distinguishable from the prior-mean announcement), so
+the rule is credibly incentive-compatible.
+
+Under this rule, the economy is in the FG regime with probability $\theta$ and in
+the opacity regime with probability $1-\theta$. Expected total loss:
+\begin{equation}
+  \mathcal{L}^\theta
+  = \theta\,\mathcal{L}^{\mathrm{FG}} + (1-\theta)\,\mathcal{L}^{\mathrm{OP}},
+  \label{eq:theta_mixture}
+\end{equation}
+which immediately yields~\eqref{eq:scenario_gain}. Equation~\eqref{eq:theta_mixture}
+makes clear that the welfare hierarchy is a line segment connecting the opacity and
+FG outcomes as $\theta$ moves from 0 to 1.
+
+\paragraph{Diminishing returns to signal precision.}
+While the welfare gain is linear in informativeness $\theta$, it exhibits
+\emph{diminishing returns to signal precision} when the scenario is implemented via
+a noisy rate announcement. Suppose the central bank announces
+$s = \phi_c(\lambda)\varepsilon_c + \xi$ where $\xi$ is mean-zero noise with
+variance $1/\tau$ (precision $\tau \geq 0$). With a Gaussian prior
+$\phi_c(\lambda) \sim \mathcal{N}(\bar{\phi}_c, \sigma_\phi^2)$, the posterior
+variance is $\sigma_\phi^2/(1 + \tau\sigma_\phi^2\varepsilon_c^2)$, and the
+resulting informativeness is:
+\begin{equation}
+  \theta(\tau) = \frac{\tau\sigma_\phi^2\varepsilon_c^2}{1 + \tau\sigma_\phi^2\varepsilon_c^2},
+  \label{eq:theta_tau}
+\end{equation}
+which is increasing and strictly concave in $\tau$. Combining with
+Proposition~\ref{prop:scenario}, the welfare gain as a function of precision is:
+\begin{equation}
+  \mathcal{L}^{\mathrm{OP}} - \mathcal{L}^\tau
+  = \frac{\tau\sigma_\phi^2\varepsilon_c^2}{1 + \tau\sigma_\phi^2\varepsilon_c^2}
+    \cdot \bigl(\mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathrm{FG}}\bigr).
+  \label{eq:welfare_tau}
+\end{equation}
+Marginal gains from increasing precision $\tau$ are positive throughout but
+converging to zero as $\tau \to \infty$. The full FG gain is recovered only in the
+limit $\tau \to \infty$. This concavity implies that \emph{once a central bank has
+committed to some scenario communication, the incremental value of further
+precision---tighter rate ranges, more scenarios---declines}.
+
+\paragraph{Taxonomy.}
+Proposition~\ref{prop:scenario} implies the following welfare-ordered taxonomy:
 
 \begin{enumerate}[label=\arabic*.]
-  \item \textbf{Explicit rate-path guidance (FG):} Maximum welfare gain; fully
-        reveals the reaction function.
-  \item \textbf{Contingent scenarios:} Intermediate gain; welfare improvement
-        proportional to the posterior variance reduction in $\phi_c(\lambda)$.
-  \item \textbf{Market-conditioned or constant-rate forecasts (BOE, SNB):}
-        Zero gain relative to opacity in the baseline model; non-contingent
-        announcements cannot encode the reaction function.
-  \item \textbf{Opacity:} Benchmark; maximum exchange rate misalignment and
-        expectation coordination loss.
+  \item \textbf{Forward guidance} ($\theta = 1$): maximum gain; full type
+        revelation via the rate-path announcement.
+  \item \textbf{Contingent scenarios} ($\theta \in (0,1)$): intermediate gain
+        $= \theta \times$ FG gain; welfare improvement is proportional to
+        Blackwell informativeness.
+  \item \textbf{Market-conditioned or constant-rate forecasts} ($\theta = 0$):
+        zero gain; non-contingent announcements cannot encode the reaction function.
+  \item \textbf{Opacity} ($\theta = 0$): benchmark; same welfare as SNB/BOE.
 \end{enumerate}
 
-This taxonomy provides a theoretical foundation for the empirical observation that
-central banks publishing explicit rate paths (Norges Bank, Riksbank, RBNZ) tend to
-generate more informative signals for financial market participants than those
-publishing only conditional economic forecasts.
+Optimal scenario design (absent commitment frictions) requires $\theta = 1$:
+Proposition~\ref{prop:scenario} shows no interior maximum. If the central bank
+faces a cost $C(\theta)$ of transparency (legal constraints, political exposure,
+or equilibrium credibility bounds), the optimal $\theta^*$ solves:
+\begin{equation}
+  \theta^* = \arg\max_{\theta\in[0,1]}\;
+  \theta\,\bigl(\mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathrm{FG}}\bigr)
+  - C(\theta),
+  \label{eq:opt_theta}
+\end{equation}
+yielding an interior solution $\theta^* \in (0,1)$ whenever $C'(0) < \mathcal{L}^{\mathrm{OP}}
+- \mathcal{L}^{\mathrm{FG}}$ and $C$ is convex. In this case the marginal value of
+transparency equals the marginal cost of disclosure.
 
 %% -----------------------------------------------------------
 \subsection{Continuous Type Distribution}
