@@ -1,13 +1,245 @@
 %% =============================================================
-%% Section 4: Extensions (Placeholder)
+%% Section 4: Extensions
 %% =============================================================
 
 \section{Extensions}
 \label{sec:extensions}
 
-This section outlines three natural extensions of the baseline model.
+\subsection{Intermediate Communication Regimes}
+\label{sec:intermediate}
 
+The binary comparison between forward guidance and opacity abstracts from a range
+of communication practices used by actual central banks. Two intermediate regimes
+are of particular interest. The \emph{Swiss National Bank} (SNB) publishes
+projections of inflation and output conditional on the policy rate remaining constant
+throughout the forecast horizon. The \emph{Bank of England} (BOE) publishes
+projections conditional on the market-implied path of future interest rates---the
+path inferred from financial market instruments at the time of the announcement. In
+both cases, the central bank publishes rich economic forecasts, but it does not
+directly announce its intended rate path.
+
+\paragraph{The SNB regime.}
+Let $\bar{i}$ be the reference rate at which the SNB conditions its forecast; in
+practice this is the current period-1 rate $i_1$.\footnote{The SNB's conditioning
+assumption has evolved over time, but the essential feature is that the rate is held
+fixed at a known, publicly observed level---not the bank's intended future path.}
+The announced period-2 forecasts are:
+\begin{align}
+  \hat{y}_2^{\mathrm{SNB}}  &\equiv \mathbb{E}_1\bigl[y_2 \mid i_2 = i_1\bigr]
+    = -\tilde{\sigma}\,i_1, \label{eq:y2hat_SNB}\\
+  \hat{\pi}_2^{\mathrm{SNB}} &\equiv \mathbb{E}_1\bigl[\pi_2 \mid i_2 = i_1\bigr]
+    = -\kappa\tilde{\sigma}\,i_1 + \varepsilon_c, \label{eq:pi2hat_SNB}
+\end{align}
+where we have used $\mathbb{E}_1[\varepsilon_{d,2}] = 0$ and the reduced-form
+expressions \eqref{eq:IS2_reduced}--\eqref{eq:NKPC2}.
+
+\paragraph{The BOE regime.}
+Under opacity, the private sector expects $i_2 = \bar{\phi}_c\,\varepsilon_c$
+(equation~\eqref{eq:E_i2_OP}). The BOE conditions its forecast on this
+market-implied path:
+\begin{align}
+  \hat{y}_2^{\mathrm{BOE}}  &\equiv \mathbb{E}_1\bigl[y_2 \mid i_2 =
+    \bar{\phi}_c\,\varepsilon_c\bigr]
+    = -\tilde{\sigma}\,\bar{\phi}_c\,\varepsilon_c, \label{eq:y2hat_BOE}\\
+  \hat{\pi}_2^{\mathrm{BOE}} &\equiv \mathbb{E}_1\bigl[\pi_2 \mid i_2 =
+    \bar{\phi}_c\,\varepsilon_c\bigr]
+    = \bigl(1 - \kappa\tilde{\sigma}\bar{\phi}_c\bigr)\varepsilon_c.
+    \label{eq:pi2hat_BOE}
+\end{align}
+The conditioning assumption is endogenous to market expectations: private agents
+form $\mathbb{E}_1[i_2]$, the BOE conditions on this, and equilibrium requires
+consistency between the two. Below we verify that the opacity expectation is the
+unique self-consistent fixed point.
+
+\begin{proposition}[Intermediate Regimes Are Welfare-Equivalent to Opacity]
+\label{prop:intermediate}
+Under either the SNB or the BOE communication regime, the private sector's
+equilibrium expectation of the period-2 rate satisfies
+$\mathbb{E}_1[i_2] = \bar{\phi}_c\,\varepsilon_c$, the period-1 allocation is
+identical to that under opacity, and welfare satisfies
+\begin{equation}
+  \mathcal{L}^{\mathrm{SNB}} = \mathcal{L}^{\mathrm{BOE}} = \mathcal{L}^{\mathrm{OP}}.
+  \label{eq:intermediate_welfare}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+\textit{SNB regime.} Inspect~\eqref{eq:y2hat_SNB}--\eqref{eq:pi2hat_SNB}. Both
+announced forecasts depend only on $i_1$, $\tilde{\sigma}$, $\kappa$, and
+$\varepsilon_c$. Of these, $\tilde{\sigma}$ and $\kappa$ are common knowledge,
+$i_1$ is publicly observed in period 1, and $\varepsilon_c$ is publicly observed
+by assumption (Section~\ref{sec:timing}). The announcements are therefore redundant
+given the agents' information set: they contain no information about $\lambda$ beyond
+what is already known. Agents continue to use the prior to form
+$\mathbb{E}_1^{\mathrm{SNB}}[i_2] = \bar{\phi}_c\,\varepsilon_c$, as under opacity.
+
+\textit{BOE regime.} Suppose agents form expectation
+$\mathbb{E}_1[i_2] = m\,\varepsilon_c$ for some coefficient $m$ to be determined.
+The BOE conditions on $i_2 = m\,\varepsilon_c$ and announces
+\eqref{eq:y2hat_BOE}--\eqref{eq:pi2hat_BOE} with $\bar{\phi}_c$ replaced by $m$.
+These announcements depend only on $m$, $\tilde{\sigma}$, $\kappa$, and
+$\varepsilon_c$---none of which reveal $\lambda$. Agents learn nothing about
+$\lambda$ and update $m$ only through prior beliefs: $m = \bar{\phi}_c$.
+The fixed point $m = \bar{\phi}_c$ is therefore unique, confirming
+$\mathbb{E}_1^{\mathrm{BOE}}[i_2] = \bar{\phi}_c\,\varepsilon_c$.
+
+Since both intermediate regimes induce the same period-1 expectation as opacity, the
+period-1 exchange rate, IS curve, and NKPC (equations
+\eqref{eq:q1_regime}--\eqref{eq:NKPC1_r}) are identical. Period-2 policy is
+unaffected by period-1 announcements. Welfare is therefore identical to opacity.
+\qed
+\end{proof}
+
+\paragraph{The key mechanism.}
+The result rests on a single structural observation: the central bank's private
+information $\lambda$ governs its \emph{reaction function}---how much it raises the
+rate in response to cost-push shocks---not the structural equations that describe
+how the economy responds to a given rate. The IS and Phillips curves (with slopes
+$\tilde{\sigma}$ and $\kappa$) are common knowledge. Conditional forecasts, by
+construction, fix the rate path and apply these common-knowledge structural
+equations; they therefore mechanically strip out the type-dependent information.
+Only direct communication about the intended rate path encodes $\lambda$.
+
+\paragraph{Welfare hierarchy.}
+Combining Propositions~\ref{prop:welfare} and~\ref{prop:intermediate}:
+\begin{equation}
+  \mathcal{L}^{\mathrm{FG}}
+  \;\leq\;
+  \mathcal{L}^{\mathrm{SNB}}
+  \;=\;
+  \mathcal{L}^{\mathrm{BOE}}
+  \;=\;
+  \mathcal{L}^{\mathrm{OP}},
+  \label{eq:welfare_hierarchy}
+\end{equation}
+with strict inequality on the left whenever $p \in (0,1)$, $\lambda_H \neq
+\lambda_L$, and $\sigma_c^2 > 0$. The two intermediate regimes, while reflecting
+genuine and substantive differences in central bank practice, are
+welfare-equivalent to full opacity in this model. The implication is stark: what
+matters for welfare is not the \emph{volume} of information published, but whether
+the publication encodes information about the central bank's \emph{intended rate
+path} and, through it, its type.
+
+\paragraph{Remark: private cost-push shocks.}
+The equivalence result depends on $\varepsilon_c$ being publicly observed. If,
+instead, $\varepsilon_c$ were private information of the central bank, SNB-style and
+BOE-style announcements would reveal $\varepsilon_c$ to private agents (via
+\eqref{eq:pi2hat_SNB} and \eqref{eq:pi2hat_BOE}), yielding a strict welfare gain
+relative to full opacity. In this richer setting, the intermediate regimes would
+occupy a genuinely intermediate position in the welfare hierarchy, transmitting
+information about the central bank's macroeconomic assessment without disclosing its
+reaction function. We treat this as a natural extension.
+
+%% -----------------------------------------------------------
+\subsection{Welfare-Improving Scenario Communication}
+\label{sec:scenarios}
+
+Proposition~\ref{prop:intermediate} identifies a sharp boundary: conditional
+economic forecasts are welfare-neutral relative to opacity, while explicit rate-path
+announcements strictly improve welfare. Between these extremes lies
+\emph{scenario communication}---publishing the intended rate path under multiple
+contingencies. We now examine when scenarios improve welfare and how the magnitude
+of the gain varies with scenario design.
+
+\paragraph{Definition.}
+A \emph{scenario} is a triplet
+$\bigl(\varepsilon_c^{(k)},\, \hat{\imath}_2^{(k)},\,
+\hat{\pi}_2^{(k)},\, \hat{y}_2^{(k)}\bigr)$
+specifying the central bank's intended period-2 rate and the associated economic
+outcomes conditional on the cost-push shock taking the value
+$\varepsilon_c^{(k)}$. A \emph{scenario set} is a menu of $K$ such triplets
+$\mathcal{S} = \bigl\{\bigl(\varepsilon_c^{(k)}, \hat{\imath}_2^{(k)}\bigr)
+\bigr\}_{k=1}^{K}$.
+
+\paragraph{Scenarios and type revelation.}
+Since $i_2^*(\lambda) = \phi_d\varepsilon_d + \phi_c(\lambda)\varepsilon_c$, a
+scenario $({\varepsilon}_c^{(k)},\, \hat{\imath}_2^{(k)})$ with
+$\hat{\imath}_2^{(k)} = \phi_c(\lambda)\varepsilon_c^{(k)}$ at any
+$\varepsilon_c^{(k)} \neq 0$ fully reveals $\lambda$, since $\phi_c$ is strictly
+monotone. A single such contingent scenario is thus informationally equivalent to
+full forward guidance.
+
+Compare this with the intermediate regimes of Section~\ref{sec:intermediate}:
+
+\begin{itemize}
+  \item \emph{Non-contingent scenarios} (SNB, BOE): condition on a fixed rate
+        $\hat{\imath}_2 = c$ (a constant, or a market-implied constant).
+        These are welfare-equivalent to opacity because $\lambda$ does not affect
+        the forecast when the rate is fixed.
+  \item \emph{Contingent scenarios}: map a future shock realization to an
+        intended rate $\hat{\imath}_2(\varepsilon_c^{(k)}) = \phi_c(\lambda)\varepsilon_c^{(k)}$.
+        These reveal $\lambda$ and are welfare-equivalent to forward guidance.
+\end{itemize}
+
+The distinction is precisely whether the announced rate path varies with the
+shock in a type-dependent way.
+
+\paragraph{Partial type revelation.}
+Scenarios need not fully reveal $\lambda$ to be welfare-improving. Consider the
+continuous type extension of Section~\ref{sec:extensions:continuous}, where
+$\lambda \sim F$ on $[\lambda_L, \lambda_H]$. Suppose the central bank publishes a
+scenario set that allows agents to update their posterior over $\lambda$ to
+$F(\cdot \mid \mathcal{S})$, restricting the effective support to some interval
+$[\underline{\lambda}, \overline{\lambda}] \subseteq [\lambda_L, \lambda_H]$. From
+the welfare gap formula~\eqref{eq:L1_gap_expected}, the gain relative to full
+opacity is:
+\begin{equation}
+  \mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathcal{S}}
+  \;\propto\;
+  \Bigl[\mathrm{Var}_\lambda\bigl[\phi_c(\lambda)\bigr]
+        - \mathrm{Var}_\lambda\bigl[\phi_c(\lambda)
+          \mid \lambda \in [\underline{\lambda},\overline{\lambda}]\bigr]
+  \Bigr]\sigma_c^2,
+  \label{eq:scenario_gain}
+\end{equation}
+where $\mathrm{Var}_\lambda[\phi_c(\lambda) \mid \cdot]$ is the posterior variance
+of the response coefficient under the scenario. The gain is:
+\begin{itemize}
+  \item \emph{Zero} if the scenario conveys no information about $\lambda$
+        (as in the non-contingent SNB/BOE cases, where the posterior equals the
+        prior).
+  \item \emph{Strictly positive} for any scenario that reduces the posterior
+        variance of $\phi_c(\lambda)$.
+  \item \emph{Maximised} when the scenario fully reveals $\lambda$,
+        recovering the full forward guidance gain
+        $\mathcal{L}^{\mathrm{OP}} - \mathcal{L}^{\mathrm{FG}}$.
+\end{itemize}
+
+\paragraph{Optimal scenario design.}
+Expression~\eqref{eq:scenario_gain} frames the optimal scenario design problem:
+choose the scenario set $\mathcal{S}$ to maximise the reduction in posterior
+variance of $\phi_c(\lambda)$, subject to constraints on the number and form of
+scenarios. In the binary type model ($\lambda \in \{\lambda_L, \lambda_H\}$), any
+single contingent scenario with $\varepsilon_c^{(k)} \neq 0$ achieves the
+maximum---there is no intermediate case. Richer type distributions admit a spectrum
+of intermediate designs, ranging from ``fan charts'' that narrow the posterior over
+$\lambda$ somewhat, to full rate-path announcements that eliminate posterior
+uncertainty entirely.
+
+\paragraph{Implications for practice.}
+The analysis suggests a taxonomy of central bank communication regimes, ordered by
+welfare impact:
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Explicit rate-path guidance (FG):} Maximum welfare gain; fully
+        reveals the reaction function.
+  \item \textbf{Contingent scenarios:} Intermediate gain; welfare improvement
+        proportional to the posterior variance reduction in $\phi_c(\lambda)$.
+  \item \textbf{Market-conditioned or constant-rate forecasts (BOE, SNB):}
+        Zero gain relative to opacity in the baseline model; non-contingent
+        announcements cannot encode the reaction function.
+  \item \textbf{Opacity:} Benchmark; maximum exchange rate misalignment and
+        expectation coordination loss.
+\end{enumerate}
+
+This taxonomy provides a theoretical foundation for the empirical observation that
+central banks publishing explicit rate paths (Norges Bank, Riksbank, RBNZ) tend to
+generate more informative signals for financial market participants than those
+publishing only conditional economic forecasts.
+
+%% -----------------------------------------------------------
 \subsection{Continuous Type Distribution}
+\label{sec:extensions:continuous}
 
 The binary type assumption ($\lambda \in \{\lambda_L, \lambda_H\}$) can be relaxed to
 a continuous distribution $\lambda \sim F$ on $[\lambda_L, \lambda_H]$. Under
@@ -19,7 +251,9 @@ $\mathrm{Var}_\lambda[\phi_c(\lambda)] \cdot \sigma_c^2$, now computed over the
 continuous distribution. Richer distributional assumptions (e.g.\ fat tails for the
 hawkish type) can affect the quantitative magnitude of the gain.
 
+%% -----------------------------------------------------------
 \subsection{Strategic Announcements}
+\label{sec:strategic}
 
 In the baseline, the announcement is truthful by assumption. An important extension
 considers the case in which the central bank is \emph{strategic}: it chooses what to
@@ -31,7 +265,9 @@ partial commitment, pooling equilibria may arise in which the central bank shade
 announcement toward the prior mean, reducing the informational content of forward
 guidance.
 
+%% -----------------------------------------------------------
 \subsection{Risk Premia and UIP Deviations}
+\label{sec:riskpremia}
 
 The baseline model assumes that UIP holds exactly. A standard extension introduces a
 time-varying risk premium $\rho_t$ in the UIP condition:
