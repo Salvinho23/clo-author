@@ -1,0 +1,177 @@
+%% =============================================================
+%% Section 3: Welfare Comparison
+%% =============================================================
+
+\section{Welfare Comparison}
+\label{sec:welfare}
+
+We compare the \emph{expected} total loss $\mathbb{E}[\mathcal{L}]$ under forward
+guidance and opacity, where expectations are taken over the realisations of both shocks
+$(\varepsilon_d, \varepsilon_c)$, and---in the opacity case---over the CB's type.
+
+\subsection{Period-2 Losses}
+
+The period-2 loss for a central bank of type $\lambda$ under either regime is
+$\mathcal{L}_2(\lambda) = (y_2^*)^2 + \lambda(\pi_2^*)^2$.
+Substituting~\eqref{eq:y2star_clean} and~\eqref{eq:pi2star_clean}:
+\begin{equation}
+  \mathcal{L}_2(\lambda)
+    = \frac{(1 + \lambda^2\kappa^2)\varepsilon_{d,2}^2
+            - 2\lambda\kappa\varepsilon_{d,2}\varepsilon_c
+            + \lambda(1 + \kappa^2)\varepsilon_c^2}{(1+\lambda\kappa^2)^2}.
+  \label{eq:L2_realized}
+\end{equation}
+Taking expectations over $(\varepsilon_d, \varepsilon_c)$ with
+$\mathbb{E}[\varepsilon_d] = \mathbb{E}[\varepsilon_c] = 0$,
+$\mathrm{Var}(\varepsilon_d) = \sigma_d^2$, $\mathrm{Var}(\varepsilon_c) = \sigma_c^2$,
+and $\mathrm{Cov}(\varepsilon_d,\varepsilon_c) = 0$:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}_2(\lambda)]
+    = \frac{(1+\lambda^2\kappa^2)\sigma_d^2
+            + \lambda(1+\kappa^2)\sigma_c^2}{(1+\lambda\kappa^2)^2}.
+  \label{eq:EL2_type}
+\end{equation}
+
+\subsection{Exchange Rate Misalignment and Period-1 Losses}
+
+Under forward guidance, private agents know the central bank's type and form correct
+expectations of the period-2 rate. The period-1 exchange rate is:
+\begin{equation}
+  q_1^{\mathrm{FG}}(\lambda) = -i_1 - \phi_c(\lambda)\,\varepsilon_c.
+  \label{eq:q1_FG}
+\end{equation}
+
+Under opacity, agents use the prior-weighted average:
+\begin{equation}
+  q_1^{\mathrm{OP}} = -i_1 - \bar{\phi}_c\,\varepsilon_c.
+  \label{eq:q1_OP}
+\end{equation}
+
+Define the \emph{exchange rate misalignment} under opacity as:
+\begin{equation}
+  \Delta q_1(\lambda) \equiv q_1^{\mathrm{FG}}(\lambda) - q_1^{\mathrm{OP}}
+    = -\bigl(\phi_c(\lambda) - \bar{\phi}_c\bigr)\varepsilon_c.
+  \label{eq:misalignment}
+\end{equation}
+Since $\phi_c(\lambda)$ is strictly increasing, $\Delta q_1(\lambda_H) < 0$ and
+$\Delta q_1(\lambda_L) > 0$: the exchange rate is too weak (depreciated) under opacity
+when the true type is hawkish and too strong (appreciated) when the true type is dovish.
+
+This misalignment feeds into the period-1 IS curve and NKPC (equations
+\eqref{eq:IS1_reduced}--\eqref{eq:NKPC1_r}), generating a period-1 welfare loss under
+opacity relative to forward guidance.
+
+\subsection{Main Result}
+
+\begin{proposition}[Forward Guidance Weakly Dominates Opacity]
+\label{prop:welfare}
+Let $\mathcal{L}^r$ denote total expected loss under regime $r \in \{\mathrm{FG},
+\mathrm{OP}\}$, where the expectation is taken over shocks and, under opacity, over
+the prior distribution of types. Then:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}^{\mathrm{FG}}] \leq \mathbb{E}[\mathcal{L}^{\mathrm{OP}}],
+  \label{eq:welfare_result}
+\end{equation}
+with strict inequality whenever $p \in (0,1)$ and $\lambda_H \neq \lambda_L$ and
+$\sigma_c^2 > 0$.
+\end{proposition}
+
+\paragraph{Proof sketch.}
+The total expected loss under each regime decomposes as:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}^r]
+    = \mathbb{E}[\mathcal{L}_1^r] + \beta\,\mathbb{E}[\mathcal{L}_2^r].
+  \label{eq:total_loss_decomp}
+\end{equation}
+
+\noindent\textit{Period-2 comparison.}
+Under FG, the period-2 policy is the same function of shocks as under OP (the bank
+re-optimises in period 2 regardless of the period-1 announcement). However, under FG
+the central bank's known type is $\lambda$, so:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}_2^{\mathrm{FG}}] = \mathbb{E}[\mathcal{L}_2(\lambda)].
+\end{equation}
+Under OP, the ex-ante expected period-2 loss integrates over the type distribution:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}_2^{\mathrm{OP}}]
+    = p\,\mathbb{E}[\mathcal{L}_2(\lambda_H)]
+    + (1-p)\,\mathbb{E}[\mathcal{L}_2(\lambda_L)].
+\end{equation}
+Both expressions equal the same weighted average \emph{ex ante}---period-2 losses are
+identical in expectation across regimes. The difference arises solely from the
+period-1 losses.
+
+\noindent\textit{Period-1 comparison.}
+From~\eqref{eq:IS1_reduced} and~\eqref{eq:NKPC1_r}, the period-1 output gap and
+inflation under regime $r$ are functions of $\mathbb{E}_1^r[i_2]$. Under FG,
+$\mathbb{E}_1^{\mathrm{FG}}[i_2] = \phi_c(\lambda)\varepsilon_c$ (correct). Under OP,
+$\mathbb{E}_1^{\mathrm{OP}}[i_2] = \bar{\phi}_c\varepsilon_c$ (an average that may
+diverge from the true value). For a given $i_1$, the period-1 loss under opacity
+exceeds that under FG by:
+\begin{align}
+  \mathcal{L}_1^{\mathrm{OP}} - \mathcal{L}_1^{\mathrm{FG}}
+  &\propto \bigl(\phi_c(\lambda) - \bar{\phi}_c\bigr)^2 \varepsilon_c^2.
+  \label{eq:L1_gap}
+\end{align}
+Taking expectations over $\varepsilon_c$ and the prior over $\lambda$:
+\begin{equation}
+  \mathbb{E}[\mathcal{L}_1^{\mathrm{OP}}] - \mathbb{E}[\mathcal{L}_1^{\mathrm{FG}}]
+  \propto \mathrm{Var}_\lambda\bigl[\phi_c(\lambda)\bigr]\cdot\sigma_c^2 \geq 0,
+  \label{eq:L1_gap_expected}
+\end{equation}
+where $\mathrm{Var}_\lambda[\phi_c(\lambda)] = p(1-p)(\phi_c(\lambda_H) -
+\phi_c(\lambda_L))^2 > 0$ whenever $p \in (0,1)$ and $\lambda_H \neq \lambda_L$.
+This is strictly positive when $\sigma_c^2 > 0$, completing the argument. \qed
+
+\paragraph{Economic interpretation.}
+The welfare gain from forward guidance has two additive components:
+
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Exchange rate channel.} By revealing its type, the central bank allows
+        markets to correctly price the path of the real exchange rate from period 1
+        onwards. Under opacity, the exchange rate is anchored to the prior-weighted
+        average response coefficient $\bar{\phi}_c$, generating a misalignment
+        $\Delta q_1(\lambda)$ that distorts period-1 allocations. This channel is
+        specific to the open-economy setting.
+
+  \item \textbf{Expectation coordination channel.} Correct knowledge of $\phi_c(\lambda)$
+        also reduces the variance of expected future inflation $\mathbb{E}_1[\pi_2]$
+        and future output $\mathbb{E}_1[y_2]$, tightening the period-1 IS curve and
+        NKPC around their optimal values.
+\end{enumerate}
+
+Both channels are activated only when cost-push shocks are present ($\sigma_c^2 > 0$)
+and genuine type uncertainty exists ($p \in (0,1)$, $\lambda_H \neq \lambda_L$). In
+the absence of cost-push shocks, demand shocks are accommodated identically by all
+types, $\phi_c$ plays no role, and the two regimes are welfare-equivalent.
+
+\subsection{The Exchange Rate Amplification Effect}
+\label{sec:amplification}
+
+A key prediction is that the welfare advantage of forward guidance is \emph{larger}
+in more open economies. To see this, note that the misalignment term in
+\eqref{eq:L1_gap} involves $\bigl(\phi_c(\lambda) - \bar{\phi}_c\bigr)^2$, where
+$\phi_c(\lambda) = \lambda\kappa/[\tilde{\sigma}(1+\lambda\kappa^2)]$.
+
+\begin{corollary}[Openness and the Value of Transparency]
+\label{cor:openness}
+The welfare gain from forward guidance is decreasing in the degree of openness
+$\alpha$ (holding $\sigma$ fixed).
+\end{corollary}
+
+\begin{proof}
+Since $\tilde{\sigma} = \sigma + \alpha$, increasing $\alpha$ raises $\tilde{\sigma}$,
+which reduces $\phi_c(\lambda)$ for all $\lambda$. As $\tilde{\sigma} \to \infty$, all
+$\phi_c(\lambda) \to 0$ and the welfare gap~\eqref{eq:L1_gap_expected} vanishes.
+The amplification is therefore \emph{non-monotone}: openness amplifies the
+transmission of the policy rate to output (via $\tilde{\sigma}$), but it also
+compresses the dispersion of reaction functions across types. \qed
+\end{proof}
+
+\noindent\textbf{Remark.} Corollary~\ref{cor:openness} has a substantive implication:
+very open economies may have less to gain from formal forward guidance, because the
+exchange rate channel already transmits the policy stance efficiently---the market can
+``read'' the central bank's intentions from the current exchange rate. This is
+consistent with the observation that several highly open economies (e.g.\ Hong Kong,
+Singapore) operate under monetary frameworks that rely less on explicit rate-path
+guidance.

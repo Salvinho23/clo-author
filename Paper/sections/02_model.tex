@@ -1,0 +1,345 @@
+%% =============================================================
+%% Section 2: Model
+%% =============================================================
+
+\section{Model}
+\label{sec:model}
+
+\subsection{Environment}
+\label{sec:environment}
+
+Time is discrete with two periods, $t \in \{1,2\}$. The economy is a small open
+economy populated by a representative household-firm unit. The central bank sets the
+nominal interest rate $i_t$ each period to minimise a quadratic loss function. We use
+lower-case variables to denote log-deviations from steady state; all steady-state
+values are normalised to zero.
+
+\paragraph{IS curve.}
+Aggregate demand in each period follows the standard open-economy Euler equation:
+\begin{equation}
+  y_t = \mathbb{E}_t[y_{t+1}] - \sigma\bigl(i_t - \mathbb{E}_t[\pi_{t+1}]\bigr)
+        + \alpha\, q_t + \varepsilon_{d,t},
+  \label{eq:IS}
+\end{equation}
+where $y_t$ is the output gap, $\pi_t$ is CPI inflation, $i_t$ is the nominal policy
+rate, $q_t$ is the (log) real exchange rate (an increase is a depreciation), and
+$\varepsilon_{d,t}$ is a demand disturbance. The parameter $\sigma > 0$ is the
+intertemporal elasticity of substitution and $\alpha > 0$ captures the expenditure-
+switching effect of the real exchange rate on net exports.
+
+\paragraph{New Keynesian Phillips curve.}
+Inflation dynamics are governed by
+\begin{equation}
+  \pi_t = \beta\, \mathbb{E}_t[\pi_{t+1}] + \kappa\, y_t + \varepsilon_{c,t},
+  \label{eq:NKPC}
+\end{equation}
+where $\beta \in (0,1)$ is the household discount factor, $\kappa > 0$ is the slope
+of the Phillips curve, and $\varepsilon_{c,t}$ is a cost-push shock.
+
+\paragraph{Uncovered interest parity.}
+The real exchange rate satisfies the forward-looking UIP condition:
+\begin{equation}
+  q_t = \mathbb{E}_t[q_{t+1}] - \bigl(i_t - i^*\bigr),
+  \label{eq:UIP}
+\end{equation}
+where $i^* \geq 0$ is the (exogenous, constant) foreign interest rate. Because the
+model has two periods, the exchange rate today embeds the entire expected path of
+future interest rate differentials. Iterating~\eqref{eq:UIP} forward and imposing the
+terminal condition $\mathbb{E}_2[q_3] = 0$ gives:
+\begin{equation}
+  q_1 = -\bigl(i_1 - i^*\bigr) - \mathbb{E}_1\bigl[i_2 - i^*\bigr].
+  \label{eq:q1_path}
+\end{equation}
+Equation~\eqref{eq:q1_path} is central to the paper's mechanism: the current exchange
+rate is pinned by the entire expected path of the policy rate. Any uncertainty about
+$i_2$ therefore transmits immediately into $q_1$.
+
+\paragraph{Terminal conditions.}
+Period 2 is the final period. We impose:
+\begin{equation}
+  \mathbb{E}_2[y_3] = \mathbb{E}_2[\pi_3] = \mathbb{E}_2[q_3] = 0.
+  \label{eq:terminal}
+\end{equation}
+Substituting~\eqref{eq:terminal} into~\eqref{eq:IS}--\eqref{eq:NKPC} yields the
+period-2 block:
+\begin{align}
+  y_2 &= -\sigma\, i_2 + \alpha\, q_2 + \varepsilon_{d,2}, \label{eq:IS2}\\
+  \pi_2 &= \kappa\, y_2 + \varepsilon_{c,2}. \label{eq:NKPC2}
+\end{align}
+From~\eqref{eq:UIP} and the terminal condition:
+\begin{equation}
+  q_2 = -\bigl(i_2 - i^*\bigr).
+  \label{eq:q2}
+\end{equation}
+Substituting~\eqref{eq:q2} into~\eqref{eq:IS2} and defining the \emph{effective
+interest rate sensitivity}
+\begin{equation}
+  \tilde{\sigma} \equiv \sigma + \alpha > \sigma,
+  \label{eq:sigma_tilde}
+\end{equation}
+the period-2 output gap (after normalising $\alpha i^* = 0$) becomes:
+\begin{equation}
+  y_2 = -\tilde{\sigma}\, i_2 + \varepsilon_{d,2}.
+  \label{eq:IS2_reduced}
+\end{equation}
+The parameter $\tilde{\sigma}$ exceeds the closed-economy elasticity $\sigma$ because a
+rate increase both suppresses domestic spending \emph{and} appreciates the exchange
+rate, reducing net exports.
+
+%% -----------------------------------------------------------
+\subsection{Central Bank Preferences and Type}
+\label{sec:CB_prefs}
+
+The central bank minimises the standard quadratic loss function:
+\begin{equation}
+  \mathcal{L} = \sum_{t=1}^{2} \beta^{t-1}
+    \Bigl[ y_t^2 + \lambda\,\pi_t^2 \Bigr],
+  \label{eq:loss}
+\end{equation}
+where $\lambda > 0$ is the relative weight on inflation stabilisation. A higher
+$\lambda$ represents a more \emph{hawkish} central bank; a lower $\lambda$ a more
+\emph{dovish} one.
+
+\paragraph{Private information.}
+The inflation weight $\lambda$ is the central bank's \emph{private information}. The
+private sector holds a prior over two possible types:
+\begin{equation}
+  \lambda \in \{\lambda_L,\, \lambda_H\}, \quad \lambda_L < \lambda_H,
+  \label{eq:types}
+\end{equation}
+with prior probabilities
+\begin{equation}
+  \Pr(\lambda = \lambda_H) = p \in (0,1), \qquad
+  \Pr(\lambda = \lambda_L) = 1-p.
+  \label{eq:prior}
+\end{equation}
+Private agents know the distribution~\eqref{eq:prior} and the model equations but
+cannot directly observe $\lambda$.
+
+\paragraph{Remark.}
+The assumption that $\lambda$ is private information is motivated by empirical evidence
+that central bank preferences are not perfectly observable to the public: markets spend
+considerable resources inferring the degree of inflation aversion from policy
+decisions, communications, and appointments. This uncertainty about the reaction
+function---rather than uncertainty about economic fundamentals---is the source of
+welfare losses in the opacity regime.
+
+%% -----------------------------------------------------------
+\subsection{Timing and Communication Regimes}
+\label{sec:timing}
+
+The sequence of events is as follows:
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{Period 1 (announcement stage).} The cost-push shock $\varepsilon_{c}$
+        is publicly observed.\footnote{This captures the realistic scenario in which
+        the central bank and private sector alike observe current inflationary
+        pressure---for example, an energy price spike---before the bank announces its
+        policy intentions.} The central bank sets $i_1$. Under the two regimes:
+        \begin{itemize}
+          \item \textit{Forward guidance (FG):} The central bank announces
+                $\hat{\imath}_2$, a forecast of its intended period-2 rate. The
+                announcement is truthful and believed in full by private agents.
+          \item \textit{Opacity (OP):} The central bank makes no announcement.
+                Private agents form $\mathbb{E}_1^{\mathrm{OP}}[i_2]$ using
+                Bayes' rule over the type distribution.
+        \end{itemize}
+  \item \textbf{Period 2 (implementation stage).} The demand shock $\varepsilon_{d}$
+        is realised and observed by all. The central bank sets $i_2$ by minimising its
+        period-2 loss, taking the realised shocks and its own type as given. There is
+        \emph{no commitment}: the bank is free to deviate from any period-1
+        announcement.
+\end{enumerate}
+
+Under \emph{forward guidance}, the announcement $\hat{\imath}_2$ is the central bank's
+rational forecast of its own period-2 decision, formed in period 1 before $\varepsilon_d$
+is observed:
+\begin{equation}
+  \hat{\imath}_2(\lambda) \equiv \mathbb{E}_1\bigl[i_2^*(\lambda,
+  \varepsilon_d, \varepsilon_c)\bigr]
+  = \phi_c(\lambda)\,\varepsilon_c,
+  \label{eq:FG_announcement}
+\end{equation}
+where the second equality follows from $\mathbb{E}_1[\varepsilon_d] = 0$ and the
+period-2 optimal policy derived below (Proposition~\ref{prop:period2}). The
+announcement is a forecast, not a promise: the bank will re-optimise in period 2 upon
+observing $\varepsilon_d$.
+
+%% -----------------------------------------------------------
+\subsection{Period-2 Equilibrium}
+\label{sec:period2}
+
+\begin{proposition}[Period-2 Optimal Policy]
+\label{prop:period2}
+In period 2, the central bank of type $\lambda$ minimises $y_2^2 + \lambda\pi_2^2$
+subject to \eqref{eq:IS2_reduced} and \eqref{eq:NKPC2}. The optimal policy rate is:
+\begin{equation}
+  i_2^*(\lambda) = \phi_d\,\varepsilon_{d,2} + \phi_c(\lambda)\,\varepsilon_{c},
+  \label{eq:i2star}
+\end{equation}
+where
+\begin{align}
+  \phi_d &\equiv \frac{1}{\tilde{\sigma}},
+  \label{eq:phi_d}\\[4pt]
+  \phi_c(\lambda) &\equiv
+    \frac{\lambda\kappa}{\tilde{\sigma}\bigl(1 + \lambda\kappa^2\bigr)}.
+  \label{eq:phi_c}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Substituting~\eqref{eq:IS2_reduced} into~\eqref{eq:NKPC2}:
+\begin{equation*}
+  \pi_2 = -\kappa\tilde{\sigma}\,i_2 + \kappa\varepsilon_{d,2} + \varepsilon_c.
+\end{equation*}
+The first-order condition $\partial(y_2^2 + \lambda\pi_2^2)/\partial i_2 = 0$ gives the
+optimal trade-off condition:
+\begin{equation}
+  y_2 + \lambda\kappa\,\pi_2 = 0.
+  \label{eq:FOC_period2}
+\end{equation}
+Substituting $y_2 = -\tilde{\sigma}i_2 + \varepsilon_d$ and
+$\pi_2 = -\kappa\tilde{\sigma}i_2 + \kappa\varepsilon_d + \varepsilon_c$ into
+\eqref{eq:FOC_period2} and solving for $i_2$ yields~\eqref{eq:i2star}. \qed
+\end{proof}
+
+\paragraph{Interpretation of the response coefficients.}
+Several properties of Proposition~\ref{prop:period2} deserve emphasis.
+
+\begin{enumerate}[label=(\roman*)]
+  \item \textit{Demand shocks are accommodated identically by all types.}
+        The coefficient $\phi_d = 1/\tilde{\sigma}$ is independent of $\lambda$.
+        Because a demand shock raises output and inflation proportionally, it creates
+        no tension between stabilisation objectives; both types respond by raising the
+        rate to fully close the output gap.
+
+  \item \textit{Cost-push shocks reveal the central bank's type.}
+        The coefficient $\phi_c(\lambda)$ is strictly increasing in $\lambda$:
+        \begin{equation}
+          \frac{\partial\phi_c}{\partial\lambda}
+            = \frac{\kappa}{\tilde{\sigma}(1+\lambda\kappa^2)^2} > 0.
+          \label{eq:dphi_dlambda}
+        \end{equation}
+        A hawkish central bank ($\lambda_H$) raises the rate more aggressively in
+        response to a cost-push shock than a dovish one ($\lambda_L$), accepting a
+        larger output contraction to contain inflation. It is therefore the
+        \emph{response to cost-push shocks} that identifies the type.
+
+  \item \textit{The exchange rate amplifies the policy transmission.}
+        The effective sensitivity $\tilde{\sigma} = \sigma + \alpha > \sigma$ means
+        that, for a given change in $i_2$, output and inflation move more than in a
+        closed economy. This amplification is internalised by the central bank: a
+        smaller rate move is needed to achieve the same stabilisation, so $i_2^*$ is
+        lower in absolute value than its closed-economy counterpart.
+\end{enumerate}
+
+\paragraph{Period-2 equilibrium outcomes.}
+Substituting~\eqref{eq:i2star} back into \eqref{eq:IS2_reduced} and \eqref{eq:NKPC2}:
+\begin{align}
+  y_2^*(\lambda) &= \frac{-\lambda\kappa}{1+\lambda\kappa^2}
+    \bigl(\kappa\varepsilon_{d,2} + \varepsilon_c\bigr)
+    + \frac{\varepsilon_{d,2}}{1 + \lambda\kappa^2} \cdot \frac{1}{1},
+  \label{eq:y2star}
+\end{align}
+more compactly:
+\begin{align}
+  y_2^*(\lambda)   &= \frac{\varepsilon_{d,2} - \lambda\kappa\varepsilon_c}{1+\lambda\kappa^2},
+  \label{eq:y2star_clean}\\[4pt]
+  \pi_2^*(\lambda) &= \frac{\kappa\varepsilon_{d,2} + \varepsilon_c}{1+\lambda\kappa^2}.
+  \label{eq:pi2star_clean}
+\end{align}
+
+\noindent Note from \eqref{eq:pi2star_clean} that the denominator $(1+\lambda\kappa^2)$
+is increasing in $\lambda$: a hawkish central bank achieves smaller inflation
+deviations in response to cost-push shocks, but at the cost of larger output gap
+deviations (equation~\eqref{eq:y2star_clean}).
+
+%% -----------------------------------------------------------
+\subsection{Period-1 Equilibrium}
+\label{sec:period1}
+
+We now characterise the period-1 equilibrium under each communication regime. The
+central bank sets $i_1$ to minimise total expected loss~\eqref{eq:loss}, taking as
+given the private sector's expectations (which differ across regimes) and the
+period-2 equilibrium~\eqref{eq:i2star}.
+
+\paragraph{Expectations under each regime.}
+The period-2 rate is $i_2^*(\lambda) = \phi_d\varepsilon_d + \phi_c(\lambda)\varepsilon_c$.
+Since $\mathbb{E}_1[\varepsilon_d] = 0$, the critical object is how agents form
+$\mathbb{E}_1[i_2]$:
+
+\begin{itemize}
+  \item \textbf{Forward guidance:} The announcement $\hat{\imath}_2(\lambda) =
+        \phi_c(\lambda)\varepsilon_c$ is observed and believed. Thus:
+        \begin{equation}
+          \mathbb{E}_1^{\mathrm{FG}}[i_2] = \phi_c(\lambda)\,\varepsilon_c.
+          \label{eq:E_i2_FG}
+        \end{equation}
+
+  \item \textbf{Opacity:} Agents do not observe $\lambda$. Using the prior
+        \eqref{eq:prior} and the known equilibrium mapping~\eqref{eq:i2star}:
+        \begin{equation}
+          \mathbb{E}_1^{\mathrm{OP}}[i_2]
+            = \bigl[p\,\phi_c(\lambda_H) + (1-p)\,\phi_c(\lambda_L)\bigr]\varepsilon_c
+            \equiv \bar{\phi}_c\,\varepsilon_c,
+          \label{eq:E_i2_OP}
+        \end{equation}
+        where $\bar{\phi}_c \equiv p\,\phi_c(\lambda_H)+(1-p)\,\phi_c(\lambda_L)$
+        is the prior-weighted average response coefficient.
+\end{itemize}
+
+\paragraph{Exchange rate in period 1.}
+From~\eqref{eq:q1_path} and normalising $i^* = 0$:
+\begin{equation}
+  q_1^r = -i_1 - \mathbb{E}_1^r[i_2], \qquad r \in \{\mathrm{FG}, \mathrm{OP}\}.
+  \label{eq:q1_regime}
+\end{equation}
+The exchange rate gap between regimes is therefore:
+\begin{equation}
+  q_1^{\mathrm{FG}} - q_1^{\mathrm{OP}}
+    = -\bigl(\phi_c(\lambda) - \bar{\phi}_c\bigr)\varepsilon_c.
+  \label{eq:q1_gap}
+\end{equation}
+For a hawkish central bank ($\lambda = \lambda_H$), we have $\phi_c(\lambda_H) >
+\bar{\phi}_c$, so $q_1^{\mathrm{FG}} < q_1^{\mathrm{OP}}$: the announcement of a
+hawkish type \emph{appreciates} the exchange rate relative to the opacity benchmark.
+The opposite holds for a dovish type. Under opacity, the exchange rate is anchored to
+the prior-weighted average response---a systematic misalignment whenever $\lambda \neq
+\bar{\lambda}$ (where $\bar{\lambda} = p\lambda_H + (1-p)\lambda_L$).
+
+\paragraph{Period-1 IS curve.}
+We substitute $\mathbb{E}_1[y_2]$, $\mathbb{E}_1[\pi_2]$, and $q_1$ into
+\eqref{eq:IS}. Using the period-2 equilibrium:
+\begin{align}
+  \mathbb{E}_1[y_2]  &= 0, \label{eq:E1y2}\\
+  \mathbb{E}_1[\pi_2] &= \frac{\kappa\varepsilon_c}{1+\lambda\kappa^2}
+    \quad (\text{FG}), \qquad
+    \mathbb{E}_1[\pi_2] = \kappa\,\mathbb{E}\!\left[
+      \frac{\varepsilon_c}{1+\lambda\kappa^2}\right]
+    \quad (\text{OP}),
+  \label{eq:E1pi2}
+\end{align}
+where in \eqref{eq:E1y2} we used $\mathbb{E}[y_2^*] = 0$ under both regimes (since
+shocks are mean-zero from the period-1 perspective, using $\mathbb{E}[\varepsilon_d] = 0$
+and the structure of $y_2^*$).
+
+Substituting into the period-1 IS curve:
+\begin{equation}
+  y_1^r = -\sigma\bigl(i_1 - \mathbb{E}_1^r[\pi_2]\bigr)
+           -\alpha\bigl(i_1 + \mathbb{E}_1^r[i_2]\bigr)
+         = -\tilde{\sigma}\,i_1
+           + \sigma\,\mathbb{E}_1^r[\pi_2]
+           - \alpha\,\mathbb{E}_1^r[i_2].
+  \label{eq:IS1_reduced}
+\end{equation}
+
+\paragraph{Period-1 NKPC.}
+\begin{equation}
+  \pi_1^r = \beta\,\mathbb{E}_1^r[\pi_2] + \kappa\,y_1^r.
+  \label{eq:NKPC1_r}
+\end{equation}
+
+Equations~\eqref{eq:IS1_reduced}--\eqref{eq:NKPC1_r} define the period-1 allocation
+under each regime as a function of $i_1$ and the regime-specific expectation
+$\mathbb{E}_1^r[i_2]$. The central bank chooses $i_1$ to minimise expected total loss,
+taking~\eqref{eq:i2star} as the period-2 continuation.

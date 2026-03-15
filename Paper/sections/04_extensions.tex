@@ -1,0 +1,46 @@
+%% =============================================================
+%% Section 4: Extensions (Placeholder)
+%% =============================================================
+
+\section{Extensions}
+\label{sec:extensions}
+
+This section outlines three natural extensions of the baseline model.
+
+\subsection{Continuous Type Distribution}
+
+The binary type assumption ($\lambda \in \{\lambda_L, \lambda_H\}$) can be relaxed to
+a continuous distribution $\lambda \sim F$ on $[\lambda_L, \lambda_H]$. Under
+forward guidance, the announcement $\hat{\imath}_2(\lambda) = \phi_c(\lambda)\varepsilon_c$
+fully reveals $\lambda$ for any realisation of $\varepsilon_c \neq 0$, since $\phi_c$
+is strictly monotone. The welfare comparison in Proposition~\ref{prop:welfare}
+extends directly: the welfare gap between regimes equals
+$\mathrm{Var}_\lambda[\phi_c(\lambda)] \cdot \sigma_c^2$, now computed over the
+continuous distribution. Richer distributional assumptions (e.g.\ fat tails for the
+hawkish type) can affect the quantitative magnitude of the gain.
+
+\subsection{Strategic Announcements}
+
+In the baseline, the announcement is truthful by assumption. An important extension
+considers the case in which the central bank is \emph{strategic}: it chooses what to
+announce to influence period-1 private-sector behaviour, subject to the constraint
+that the announcement must be credible in a Bayesian equilibrium. Under full
+commitment, the truthful announcement remains an equilibrium (a separating equilibrium
+in the signalling game), since the announcement perfectly identifies the type. Under
+partial commitment, pooling equilibria may arise in which the central bank shades its
+announcement toward the prior mean, reducing the informational content of forward
+guidance.
+
+\subsection{Risk Premia and UIP Deviations}
+
+The baseline model assumes that UIP holds exactly. A standard extension introduces a
+time-varying risk premium $\rho_t$ in the UIP condition:
+\begin{equation}
+  q_t = \mathbb{E}_t[q_{t+1}] - (i_t - i^*) + \rho_t.
+\end{equation}
+If $\rho_t$ is correlated with the central bank's type (e.g.\ uncertainty about the
+reaction function generates a term premium), then forward guidance has an additional
+channel: by resolving type uncertainty, it reduces the risk premium, appreciates the
+exchange rate, and further improves period-1 allocations. This channel is
+quantitatively relevant for economies with high exchange rate pass-through to import
+prices.

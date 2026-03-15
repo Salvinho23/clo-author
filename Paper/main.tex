@@ -1,0 +1,118 @@
+%% =============================================================
+%% Forward Guidance and the Policy Rate Path
+%% Main paper file
+%% =============================================================
+
+\documentclass[12pt]{article}
+
+%% --- Layout ---
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+
+%% --- Math ---
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+%% --- Graphics and Tables ---
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+
+%% --- Citations ---
+\usepackage[authoryear,round]{natbib}
+
+%% --- Hyperlinks ---
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+
+%% --- Lists ---
+\usepackage{enumitem}
+
+%% --- Title page font control ---
+\usepackage{titling}
+\pretitle{\begin{center}\large\bfseries}
+\posttitle{\end{center}}
+\preauthor{\begin{center}\normalsize}
+\postauthor{\end{center}}
+\predate{\begin{center}\normalsize}
+\postdate{\end{center}}
+
+%% --- Theorem environments ---
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}[proposition]
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+%% --- Custom commands ---
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+%% =============================================================
+%% Title, Author, Date
+%% =============================================================
+
+\title{Forward Guidance and the Policy Rate Path:\\
+       Transparency, Type Uncertainty, and the Exchange Rate%
+       \thanks{We thank seminar participants for helpful comments.
+       All errors are our own.}}
+
+\author{[Author Name]%
+        \thanks{[Affiliation and email.]}}
+
+\date{\today}
+
+%% =============================================================
+\begin{document}
+%% =============================================================
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent\singlespacing
+We develop a two-period small open economy New Keynesian model to compare explicit
+forward guidance with opacity when the central bank's inflation aversion is private
+information. Under opacity, uncertainty about the central bank's reaction function
+generates exchange rate misalignment and suboptimal period-1 allocations. Forward
+guidance---modelled as a non-binding rate forecast---resolves this uncertainty,
+improving welfare through two channels: an exchange rate channel specific to the
+open-economy setting, and an expectation coordination channel. The welfare gain is
+strictly positive when cost-push shocks are present and type uncertainty is genuine,
+and is non-monotone in the degree of openness.
+\end{abstract}
+
+\vspace{1em}
+\noindent\textbf{JEL Codes:} E52, E58, F41
+
+\vspace{0.5em}
+\noindent\textbf{Keywords:} forward guidance, monetary policy communication,
+small open economy, type uncertainty, exchange rate
+
+\newpage
+\setcounter{page}{1}
+\doublespacing
+
+%% =============================================================
+%% Sections
+%% =============================================================
+
+\input{sections/01_introduction}
+
+\input{sections/02_model}
+
+\input{sections/03_welfare}
+
+\input{sections/04_extensions}
+
+\input{sections/05_conclusion}
+
+%% =============================================================
+%% References
+%% =============================================================
+
+\newpage
+\singlespacing
+\bibliographystyle{aer}
+\bibliography{../Bibliography_base}
+
+\end{document}
